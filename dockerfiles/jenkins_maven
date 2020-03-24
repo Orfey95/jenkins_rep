@@ -1,0 +1,7 @@
+FROM jenkins/jenkins
+
+LABEL MAINTAINER="Sasha Frolov"
+
+USER root
+
+RUN apt update && apt -y install maven
