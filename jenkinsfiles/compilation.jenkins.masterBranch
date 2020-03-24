@@ -13,7 +13,7 @@ pipeline {
             stage("downloading") {
             steps {
 				sh 'rm -rf Calculator_Java'
-				sh 'git clone https://github.com/Orfey95/Calculator_Java.git'
+				sh 'git clone https://github.com/Orfey95/jenkins_rep.git'
 				sh 'cd Calculator_Java' 
 		    } 
 				  				  
@@ -37,7 +37,6 @@ pipeline {
 	    stage("assembling") {
             steps {		
 		    		sh 'mvn clean package -Dmaven.test.skip=true'
-		    		sh 'mvn clean deploy -Dmaven.test.skip=true -DaltDeploymentRepository=nexus-snapshots::default::http://35.198.102.124:8081/repository/Snapshot/'
 		   } 
 				  				  
              }
