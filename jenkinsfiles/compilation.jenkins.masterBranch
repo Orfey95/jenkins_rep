@@ -22,7 +22,6 @@ pipeline {
 	    stage("testing") {
             steps {
 				sh 'mvn test'
-		    		sh 'mvn sonar:sonar'
 		   } 
 				  				  
              }
