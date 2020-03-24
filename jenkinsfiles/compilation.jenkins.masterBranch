@@ -12,9 +12,9 @@ pipeline {
     stages {
             stage("downloading") {
             steps {
-				sh 'rm -rf Calculator_Java'
+				sh 'rm -rf jenkins_rep'
 				sh 'git clone https://github.com/Orfey95/jenkins_rep.git'
-				sh 'cd Calculator_Java' 
+				sh 'cd jenkins_rep' 
 		    } 
 				  				  
              }  
