@@ -14,7 +14,7 @@ pipeline {
 			    credentialsId: "artifactory"
 			)
 			rtMavenRun (
-			    goals: "clean install",
+			    goals: "clean install -Dartifactory.publish.artifacts=true -Dartifactory.publish.buildInfo=true",
 			    pom: "pom.xml"
 			)
 			rtMavenDeployer(
