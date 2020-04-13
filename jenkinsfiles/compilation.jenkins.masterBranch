@@ -30,6 +30,8 @@ pipeline {
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
 			    snapshotRepo: "test"
+			    deployArtifacts: true
+			    includePatterns: "*.jar"
 			)
 	       } 				  				  
           }
