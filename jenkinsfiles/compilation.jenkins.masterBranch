@@ -6,12 +6,16 @@ pipeline {
         maven 'my-maven'
     }
     stages {       	  
-	  stage('Artifactory configuration') {
-		steps {		        
-			rtMavenRun (
-			    goals: "clean install",
-			    pom: "pom.xml"
-			)			
+	  stage("packaging") {
+               steps {
+			sh 'mvn package'
+	       } 				  				  
+          }	
+	  stage("Sonar analysis") {
+               steps {
+		        withSonarQubeEnv('my-sonar') {
+                            sh 'mvn clean sonar:sonar'
+                        }
 	       } 				  				  
           }
 	  stage('Publish to Artifactory') {
