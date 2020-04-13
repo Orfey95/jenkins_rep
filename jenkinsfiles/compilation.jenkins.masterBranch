@@ -6,9 +6,6 @@ pipeline {
         jdk 'my-jdk'
         maven 'my-maven'
     }
-    environment {
-        version = "calculator-1.3-SNAPSHOT"
-    }
     stages {       
 	  stage("packaging") {
                steps {
