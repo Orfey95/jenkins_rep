@@ -24,6 +24,7 @@ pipeline {
 			    id: "my-artifactory",
 			    url: "http://35.246.190.237:8081/artifactory",
 			    credentialsId: "artifactory"
+		            pattern: "*.jar"
 			)
 			rtMavenDeployer(
 			    id: "my-maven",
