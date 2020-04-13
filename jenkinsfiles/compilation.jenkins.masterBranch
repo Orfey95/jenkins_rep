@@ -20,6 +20,14 @@ pipeline {
           }
 	  stage('Publish to Artifactory') {
             steps {
+		rtMavenDeployer(
+			    id: "my-maven",
+			    serverId: "my-artifactory",
+			    releaseRepo: "test",
+			    snapshotRepo: "test",			    
+			    deployArtifacts: true,
+			    includePatterns: ["*.jar"]
+			)
                 rtPublishBuildInfo(serverId: "my-artifactory")
             }
         }
