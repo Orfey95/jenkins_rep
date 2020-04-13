@@ -29,7 +29,7 @@ pipeline {
 			    includePatterns: ["*.jar"]
 			)
 		    rtMavenRun (
-			    goals: "clean install",
+			    goals: "clean install -Dartifactory.publish.buildInfo=true",
 			    pom: "pom.xml"
 			)
                 rtPublishBuildInfo(serverId: "my-artifactory")
