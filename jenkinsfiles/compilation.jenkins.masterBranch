@@ -2,7 +2,10 @@
 properties([disableConcurrentBuilds()])
 pipeline {
     agent any
-    evironment {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+     environment {
         version = "calculator-1.3-SNAPSHOT"
     }
     stages {
