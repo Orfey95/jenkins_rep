@@ -6,33 +6,30 @@ pipeline {
         maven 'my-maven'
     }
     stages {       	  
-	  stage("packaging") {
-               steps {
-			sh 'mvn package'
-	       } 				  				  
-          }	
-	  stage("Sonar analysis") {
-               steps {
-		        withSonarQubeEnv('my-sonar') {
-                            sh 'mvn clean sonar:sonar'
-                        }
-	       } 				  				  
-          }
-	  stage('Publish to Artifactory') {
-            steps {
-		rtMavenDeployer(
+	  stage('Artifactory configuration') {
+		steps {
+		        rtServer(
+			    id: "my-artifactory",
+			    url: "http://35.246.190.237:8081/artifactory",
+			    credentialsId: "artifactory"
+			)			
+			rtMavenDeployer(
 			    id: "my-maven",
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
 			    snapshotRepo: "test",			    
-			    deployArtifacts: true,
+			    deployArtifacts: "true",
 			    includePatterns: ["*.jar"]
 			)
-		    rtMaven.deployer.artifactDeploymentPatterns.addInclude("*.jar")
-
-def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean package initialize'
-
-rtMaven.deployer.deployArtifacts  buildInfo 
+			rtMavenRun (
+			    goals: "clean install",
+			    pom: "pom.xml"
+			)			
+	       } 				  				  
+          }
+	  stage('Publish to Artifactory') {
+            steps {
+                rtPublishBuildInfo(serverId: "my-artifactory")
             }
         }
     }	
