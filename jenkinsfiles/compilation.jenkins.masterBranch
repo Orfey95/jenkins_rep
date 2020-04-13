@@ -7,12 +7,7 @@ pipeline {
     }
     stages {       	  
 	  stage('Artifactory configuration') {
-		steps {
-		        rtServer(
-			    id: "my-artifactory",
-			    url: "http://35.246.190.237:8081/artifactory",
-			    credentialsId: "artifactory"
-			)
+		steps {		        
 			rtMavenRun (
 			    goals: "clean install",
 			    pom: "pom.xml"
