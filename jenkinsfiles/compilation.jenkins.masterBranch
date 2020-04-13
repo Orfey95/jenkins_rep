@@ -22,7 +22,7 @@ pipeline {
 			    includePatterns: ["*.jar"]
 			)
 			rtMavenRun (
-			    goals: "clean install",
+			    goals: "clean deploy",
 			    pom: "pom.xml"
 			)			
 	       } 				  				  
