@@ -8,7 +8,6 @@ pipeline {
     stages {       	  
 	  stage('Artifactory configuration') {
 		steps {
-			rtMaven.deployer.deployArtifact = true
 		        rtServer(
 			    id: "my-artifactory",
 			    url: "http://35.246.190.237:8081/artifactory",
@@ -19,7 +18,7 @@ pipeline {
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
 			    snapshotRepo: "test",			    
-			    deployArtifacts: true,
+			    deployArtifacts: 'true',
 			    includePatterns: ["*.jar"]
 			)
 			rtMavenRun (
