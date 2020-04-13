@@ -28,6 +28,12 @@ pipeline {
 			    deployArtifacts: true,
 			    includePatterns: ["*.jar"]
 			)
+		    rtMavenResolver (
+			    id: "my-maven",
+			    serverId: "my-artifactory",
+			    releaseRepo: "test",
+			    snapshotRepo: "test"
+			    )
 		    rtMavenRun (
 			    goals: "clean install -Dartifactory.publish.buildDeploy=true -Dartifactory.publish.unstable=true",
 			    pom: "pom.xml"
