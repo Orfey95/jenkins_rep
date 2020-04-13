@@ -1,8 +1,12 @@
 #!groovy
 properties([disableConcurrentBuilds()])
 pipeline {
-    agent any   
-     environment {
+    agent any  
+    tools {
+        jdk 'my-jdk'
+        maven 'my-maven'
+    }
+    environment {
         version = "calculator-1.3-SNAPSHOT"
     }
     stages {            
