@@ -35,7 +35,7 @@ pipeline {
           }
 	  stage('Publish to Artifactory') {
             steps {
-                rtPublishBuildInfo(serverId: "server_tutorial")
+                rtPublishBuildInfo(serverId: "my-artifactory")
             }
         }
     }	
