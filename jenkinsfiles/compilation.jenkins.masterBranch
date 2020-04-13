@@ -13,10 +13,6 @@ pipeline {
 			    url: "http://35.246.190.237:8081/artifactory",
 			    credentialsId: "artifactory"
 			)
-			rtMavenRun (
-			    goals: "clean install -Dartifactory.publish.artifacts=true -Dartifactory.publish.buildInfo=true",
-			    pom: "pom.xml"
-			)
 			rtMavenDeployer(
 			    id: "my-maven",
 			    serverId: "my-artifactory",
@@ -25,6 +21,10 @@ pipeline {
 			    deployArtifacts: true,
 			    includePatterns: ["*.jar"]
 			)
+			rtMavenRun (
+			    goals: "clean install -Dartifactory.publish.artifacts=true -Dartifactory.publish.buildInfo=true",
+			    pom: "pom.xml"
+			)			
 	       } 				  				  
           }
 	  stage('Publish to Artifactory') {
