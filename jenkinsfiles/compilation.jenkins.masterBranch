@@ -26,7 +26,7 @@ pipeline {
 			    credentialsId: "artifactory"
 			)
 			rtMavenRun (
-			    goals: "clean deploy",
+			    goals: "clean install",
 			    pom: "pom.xml"
 			)
 			rtMavenDeployer(
