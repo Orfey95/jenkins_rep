@@ -5,25 +5,17 @@ pipeline {
         jdk 'my-jdk'
         maven 'my-maven'
     }
-    stages {       
-	  stage("packaging") {
-               steps {
-			sh 'mvn package'
-	       } 				  				  
-          }	
-	  stage("Sonar analysis") {
-               steps {
-		        withSonarQubeEnv('my-sonar') {
-                            sh 'mvn clean sonar:sonar'
-                        }
-	       } 				  				  
-          }
+    stages {       	  
 	  stage('Artifactory configuration') {
 		steps {
 		        rtServer(
 			    id: "my-artifactory",
 			    url: "http://35.246.190.237:8081/artifactory",
 			    credentialsId: "artifactory"
+			)
+			rtMavenRun (
+			    goals: "clean install sonar:sonar",
+			    pom: "pom.xml"
 			)
 			rtMavenDeployer(
 			    id: "my-maven",
