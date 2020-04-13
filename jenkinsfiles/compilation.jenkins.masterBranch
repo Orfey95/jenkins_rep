@@ -28,6 +28,10 @@ pipeline {
 			    deployArtifacts: true,
 			    includePatterns: ["*.jar"]
 			)
+		    rtMavenRun (
+			    goals: "clean install",
+			    pom: "pom.xml"
+			)
                 rtPublishBuildInfo(serverId: "my-artifactory")
             }
         }
