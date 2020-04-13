@@ -29,8 +29,8 @@ pipeline {
 			    id: "my-maven",
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
-			    snapshotRepo: "test"
-			    deployArtifacts: true
+			    snapshotRepo: "test",
+			    deployArtifacts: true,
 			    includePatterns: "*.jar"
 			)
 	       } 				  				  
