@@ -5,37 +5,12 @@ pipeline {
      environment {
         version = "calculator-1.3-SNAPSHOT"
     }
-    stages {
-            stage("downloading") {
+    stages {            
+	    
+	    stage("packaging") {
             steps {
-				sh 'rm -rf jenkins_rep'
-				sh 'git clone https://github.com/Orfey95/jenkins_rep.git'
-				sh 'cd jenkins_rep' 
-		    } 
-				  				  
-             }  
-	    
-	    stage("testing") {
-            steps {
-				sh 'mvn test'
-		   } 
-				  				  
-             }
-	    
-	    stage("compilation") {
-            steps {
-				sh 'mvn compile'		    		
-		   } 
-				  				  
-             }
-	    
-	    stage("assembling") {
-            steps {		
-		    		sh 'mvn clean package -Dmaven.test.skip=true'
-		   } 
-				  				  
-             }
-	    
-        }
-	
+			sh 'mvn package'
+		   } 				  				  
+             }	    	    
+        }	
    }
