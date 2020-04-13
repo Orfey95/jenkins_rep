@@ -25,13 +25,15 @@ pipeline {
 			    url: "http://35.246.190.237:8081/artifactory",
 			    credentialsId: "artifactory"
 			)
+			rtMavenRun (
+			    pom: "pom.xml"
+			)
 			rtMavenDeployer(
 			    id: "my-maven",
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
 			    snapshotRepo: "test",
-			    deployArtifacts: true,
-			    pom: "pom.xml",
+			    deployArtifacts: true,			    
 			    includePatterns: ["*.jar"]
 			)
 	       } 				  				  
