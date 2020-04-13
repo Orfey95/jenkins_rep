@@ -22,7 +22,7 @@ pipeline {
 			    includePatterns: ["*.jar"]
 			)
 			rtMavenRun (
-			    goals: "clean install -Dartifactory.publish.artifacts=$PUBLISH_ARTIFACTS -Dartifactory.publish.buildInfo=$PUBLISH_BUILDINFO",
+			    goals: "clean install",
 			    pom: "pom.xml"
 			)			
 	       } 				  				  
