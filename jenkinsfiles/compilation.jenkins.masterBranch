@@ -25,10 +25,6 @@ pipeline {
 			    url: "http://35.246.190.237:8081/artifactory",
 			    credentialsId: "artifactory"
 			)
-			rtMavenRun (
-			    goals: "clean install",
-			    pom: "pom.xml"
-			)
 			rtMavenDeployer(
 			    id: "my-maven",
 			    serverId: "my-artifactory",
