@@ -35,7 +35,7 @@ pipeline {
 			    snapshotRepo: "test"
 			    )
 		    rtMavenRun (
-			    goals: "clean install -Dartifactory.publish.buildDeploy=true -Dartifactory.publish.unstable=true",
+			    goals: "clean deploy -Dartifactory.publish.buildDeploy=true -Dartifactory.publish.unstable=true",
 			    pom: "pom.xml"
 			)
                 rtPublishBuildInfo(serverId: "my-artifactory")
