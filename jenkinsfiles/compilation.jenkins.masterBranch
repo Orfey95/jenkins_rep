@@ -1,5 +1,4 @@
 #!groovy
-properties([disableConcurrentBuilds()])
 pipeline {
     agent any  
     tools {
@@ -21,15 +20,17 @@ pipeline {
           }
 	  stage('Artifactory configuration') {
 		steps {
-		        script {
-				rtMaven.tool ='my-maven'
-				rtMaven.deployer releaseRepo: 'test', 'test', server: my-artifactory
-				rtMaven.resolver releaseRepo:'test', snapshotRepo: 'test', server: my-artifactory
-				rtMaven deployer.artifactDeploymentPatterns.addExclude("pom.xml")
-				buildInfo = Artifactory.newBuildInfo()
-				buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
-				buildInfo.env.capture = true
-			}
+		        rtServer(
+			    id: "my-artifactory",
+			    url: "http://35.246.190.237:8081/artifactory",
+			    credentialsId: "artifactory"
+			)
+			rtMavenDeployer(
+			    id: "my-maven",
+			    serverId: "my-artifactory",
+			    releaseRepo: "test",
+			    snapshotRepo: "test"
+			)
 	       } 				  				  
           }
     }	
