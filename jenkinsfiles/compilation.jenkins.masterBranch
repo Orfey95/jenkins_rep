@@ -9,13 +9,14 @@ pipeline {
      environment {
         version = "calculator-1.3-SNAPSHOT"
     }
-    stages {	    
-	    stage("packaging") {
+    stages {
+            	    
+	    stage("testing") {
             steps {
-				sh 'mvn package'
+				sh 'mvn test'
 		   } 
 				  				  
              }
+        }
 	
    }
-}
