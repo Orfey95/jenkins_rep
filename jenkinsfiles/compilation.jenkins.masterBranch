@@ -22,7 +22,7 @@ pipeline {
 			    serverId: "my-artifactory",
 			    releaseRepo: "test",
 			    snapshotRepo: "test",			    
-			    includePatterns: ["*.jar"]
+			    includePatterns: ["**/target/*.jar"]
 			)
 	       } 				  				  
           }
