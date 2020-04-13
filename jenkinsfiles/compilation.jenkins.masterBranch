@@ -23,8 +23,8 @@ pipeline {
 		rtMavenDeployer(
 			    id: "my-maven",
 			    serverId: "my-artifactory",
-			    releaseRepo: "http://35.246.190.237:8081/artifactory/test/",
-			    snapshotRepo: "http://35.246.190.237:8081/artifactory/test/",			    
+			    releaseRepo: "test",
+			    snapshotRepo: "test",			    
 			    deployArtifacts: true,
 			    includePatterns: ["*.jar"]
 			)
