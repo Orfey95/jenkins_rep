@@ -28,17 +28,11 @@ pipeline {
 			    deployArtifacts: true,
 			    includePatterns: ["*.jar"]
 			)
-		    rtMavenResolver (
-			    id: "my-maven",
-			    serverId: "my-artifactory",
-			    releaseRepo: "test",
-			    snapshotRepo: "test"
-			    )
-		    rtMavenRun (
-			    goals: "clean deploy -Dartifactory.publish.buildDeploy=true -Dartifactory.publish.unstable=true",
-			    pom: "pom.xml"
-			)
-                rtPublishBuildInfo(serverId: "my-artifactory")
+		    rtMaven.deployer.artifactDeploymentPatterns.addInclude("*.jar")
+
+def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'clean package initialize'
+
+rtMaven.deployer.deployArtifacts  buildInfo 
             }
         }
     }	
